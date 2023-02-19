@@ -1,0 +1,19 @@
+*{
+  text-decoration: none;
+}
+body{
+  background-color: #eee;
+}
+.flex{
+  display: flex;
+}
+.flex_between{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex_wrap{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
