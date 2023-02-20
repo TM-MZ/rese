@@ -31,4 +31,18 @@ class ReservationController extends Controller
         ]);
         return view('reserved');
     }
+    public function edit(Request $request){
+        $reservation=Reservation::with(['shop'])->find($request->id);
+        return view('edit',['reservation'=>$reservation]);
+    }
+    public function update(ReserveRequest $request){
+        $datetime = new Carbon();
+        $datetime = Carbon::createFromFormat('Y-m-d', $request->date);
+        $array = explode(':', $request->time);
+        $datetime->setTime($array[0], $array[1], 00);
+        $result = $datetime->toDateTime();
+        $number = $request->number;
+        Reservation::where('id','=',$request->id)->update(['date'=>$result,'number'=>$number]);
+        return redirect('/mypage');
+    }
 }

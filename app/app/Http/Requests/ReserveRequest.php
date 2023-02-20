@@ -13,7 +13,7 @@ class ReserveRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,9 @@ class ReserveRequest extends FormRequest
     {
         return [
             //
+            'date' => 'required|date|after:today',
+            'time' => 'required|date_format:G:i',
+            'number' => 'required|integer',
         ];
     }
 }

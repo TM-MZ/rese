@@ -127,7 +127,7 @@ class ShopController extends Controller
             }
         }
         if(Reservation::all()->count()>0){
-        $reservations = Reservation::with('shop')->find($user->id)->get();
+        $reservations = Reservation::with('shop')->where('user_id','=',$user->id)->get();
             return view('mypage', ['user' => $user, 'favorites' => $favorites, 'reservations' => $reservations]);
         }else{
             return view('mypage', ['user' => $user, 'favorites' => $favorites]);

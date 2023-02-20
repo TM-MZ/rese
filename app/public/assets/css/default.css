@@ -17,3 +17,7 @@ body{
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+.flex_column{
+  display: flex;
+  flex-direction: column;
+}

@@ -33,6 +33,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/favorite/{shop_id}', [ShopController::class, 'toggleFavorite'])->name('toggleFavorite');
     Route::get('/detail/{id}/{page_name}', [ShopController::class, 'showDetail'])->name('showDetail');
     Route::get('/delete/{id}', [ShopController::class, 'delete'])->name('delete');
+    Route::get('/edit/{id}',[ReservationController::class,('edit')])->name('edit');
+    Route::post('/update',[ReservationController::class,'update'])->name('update');
 });
 
 require __DIR__ . '/auth.php';
