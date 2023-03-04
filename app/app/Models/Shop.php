@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'area_id','genre_id','summary','picture_name'];
     public function area()
     {
         return $this->belongsTo('App\Models\Area');

@@ -1,8 +1,4 @@
 <style scoped>
-  * {
-    text-decoration: none;
-  }
-
   .container {
     width: 100%;
     height: 100%;

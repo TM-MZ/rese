@@ -8,27 +8,26 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-
-use App\Models\Reservation;
 use App\Models\User;
 
-class ShopMail extends Mailable
+class CustomerMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $reservation;
-    public $name;
+    public $customer;
+    public $content;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user,Reservation $reservation)
+    public function __construct(User $customer,$content)
     {
         //
-        $this->reservation=$reservation;
-        $this->name=$user->name;
+        $this->customer=$customer;
+        $this->content=$content;
+
     }
 
     /**
@@ -39,7 +38,7 @@ class ShopMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: '予約日のお知らせ',
+            subject: 'お客様へ',
         );
     }
 
@@ -51,7 +50,7 @@ class ShopMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.reserveinfo',
+            view: 'emails.mailtocustomer',
         );
     }
 

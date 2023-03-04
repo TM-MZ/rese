@@ -185,6 +185,31 @@
     outline: 1px solid blue;
 
   }
+
+  .error {
+    width:80%;
+    list-style: none;
+    color:red;
+    background-color: #eee;
+    margin-left:30px;
+    padding:5px;
+    border-radius: 5px;
+  }
+  @media screen and (max-width:768px){
+    .container{
+      display: block;
+    }
+    .shop_detail{
+      width:90%;
+      margin:100px 20px;
+      padding:10px;
+    }
+    .reservation{
+      width:90%;
+      margin:10px;
+      padding:10px;
+    }
+  }
 </style>
 <x-app-layout>
   <div class="container">
@@ -223,6 +248,15 @@
                 @endfor
             </select>
           </label>
+          <div>
+            @if ($errors->any())
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li class="error">{{ $error }}</li>
+              @endforeach
+            </ul>
+            @endif
+          </div>
           <input type="hidden" name="shop_id" value="{{$shop->id}}">
           <div class="contents">
             <table>
@@ -244,15 +278,7 @@
               </tr>
             </table>
           </div>
-          <div>
-            @if ($errors->any())
-            <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-            @endif
-          </div>
+
           <input class="reserve_button" type="submit" value="予約する">
         </form>
       </div>

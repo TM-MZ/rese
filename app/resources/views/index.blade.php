@@ -3,7 +3,8 @@
         position: fixed;
         top: 20px;
         right: 20px;
-        width: 500px;
+        width: 40%;
+        min-width: 300px;
         height: 35px;
         background-color: white;
         box-shadow: 0 1px 1px 2px rgba(0, 0, 0, .5);
@@ -111,7 +112,7 @@
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
-        min-width: 100px;
+        min-width: 50px;
         height: 20px;
         padding: 0 30px 0 5px;
         border: none;
@@ -134,7 +135,7 @@
     }
 
     .search-form-011 input {
-        width: 250px;
+        width: 50%;
         height: 30px;
         padding: 5px 15px 5px 0;
         border: none;
@@ -164,6 +165,7 @@
         background-repeat: no-repeat;
         content: '';
     }
+
 </style>
 <x-app-layout>
 

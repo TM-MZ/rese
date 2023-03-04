@@ -44,7 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     public function role()
     {
-        return $this->hasOne('App\Models\Role');
+        return $this->belongsTo('App\Models\Role');
     }
     public function favorites()
     {

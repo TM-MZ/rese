@@ -10,6 +10,8 @@ use App\Models\Favorite;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
+use Illuminate\Support\Carbon;
+
 
 class ShopController extends Controller
 {
@@ -127,7 +129,9 @@ class ShopController extends Controller
             }
         }
         if(Reservation::all()->count()>0){
-        $reservations = Reservation::with('shop')->where('user_id','=',$user->id)->get();
+            $now = new Carbon;
+            $now = Carbon::now();
+        $reservations = Reservation::with('shop')->where('user_id','=',$user->id)->where('date','>',$now)->get();
             return view('mypage', ['user' => $user, 'favorites' => $favorites, 'reservations' => $reservations]);
         }else{
             return view('mypage', ['user' => $user, 'favorites' => $favorites]);
@@ -148,9 +152,5 @@ class ShopController extends Controller
             Reservation::find($request->id)->delete();
         }
         return redirect('/mypage');
-    }
-    public function s3downtest(){
-        return view('test');
-
     }
 }

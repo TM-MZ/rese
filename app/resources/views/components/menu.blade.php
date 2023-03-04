@@ -15,7 +15,7 @@
   .menu {
     display: flex;
     align-items: center;
-    width:250px;
+    width: 250px;
     border-radius: 5px;
 
   }
@@ -24,6 +24,12 @@
     font-family: "nimbus-sans", sans-serif;
     color: #305dff;
     font-size: 36px;
+  }
+
+  @media screen and (max-width:768px) {
+    .menu_title {
+      display: none;
+    }
   }
 
   .humburger-menu {
@@ -35,8 +41,8 @@
     box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .3);
     border-radius: 5px;
     padding: 10px;
-    margin: 0 10px 0 100px;
-    z-index:1000;
+    margin: 0 10px 0 50px;
+    z-index: 1000;
   }
 
   .menu__line {
@@ -49,6 +55,7 @@
     opacity: .5;
     color: #eee;
   }
+
 
   .menu__line--top {
     top: 12;

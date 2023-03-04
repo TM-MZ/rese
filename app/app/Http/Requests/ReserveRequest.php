@@ -30,4 +30,11 @@ class ReserveRequest extends FormRequest
             'number' => 'required|integer',
         ];
     }
+    public function messages(){
+        return [
+            'date.required'=>'※予約日を入力してください',
+            'date.date'=>'※予約日を正しい形式で入力してください',
+            'date.after'=>'※予約日は明日以降の日付で入力してください',
+        ];
+    }
 }

@@ -21,6 +21,7 @@
 
   .reservations {
     width: 40%;
+    min-width:300px;
     text-align: left;
     padding: 20px;
     margin-right: 100px;
@@ -62,7 +63,13 @@
     width: 30%;
     padding: 10px 0;
   }
-
+.payment_button{
+  background-color: white;
+  color:red;
+  border-radius: 5px;
+  border:none;
+  padding:5px 10px;
+}
   .favorites {
     width: 60%;
     text-align: left;
@@ -84,17 +91,17 @@
   }
 
   .card_container {
-    display: grid;
-    justify-items: start;
-    grid-template-columns: repeat(2, 280px);
+    min-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .card {
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, .5);
-    width: 240px;
-    margin: 15px 0;
+    width: 350px;
+    margin: 15px 10px;
     border: none;
   }
 
@@ -138,6 +145,19 @@
     padding: 10px 15px;
     border-radius: 5px;
   }
+
+  @media screen and (max-width:768px) {
+    .contents {
+      width:100%;
+      display: block;
+    }
+    .reservations{
+      width:80%;
+    }
+    .favorites{
+      width:80%;
+    }
+  }
 </style>
 
 <x-app-layout>
@@ -176,6 +196,16 @@
             <tr>
               <th>Number</th>
               <td>{{$reservation->number}}人</td>
+            </tr>
+            <tr>
+              <th>事前決済可能です</th>
+              <td>
+                <form action="/checkout" method="get">
+                  @csrf
+                  <input type="hidden" name="id" value="{{$reservation->id}}">
+                  <input type="submit" class="payment_button" value="決済する">
+                </form>
+              </td>
             </tr>
           </table>
         </div>
