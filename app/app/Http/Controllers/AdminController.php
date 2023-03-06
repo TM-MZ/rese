@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopRequest;
 use Illuminate\Support\Facades\Auth;
@@ -65,9 +66,10 @@ class AdminController extends Controller
         $genre_id = $request->genre;
         $summary = $request->summary;
 
-        if ($request->file) {
-            //$reslut=Storage::disk('s3')->put('/img/',$request->file('picture'));
+        if ($request->file('picture')) {
+            $file = $request->file('picture');
             $picture_name = $request->file('picture')->getClientOriginalName();
+            $file->storeAs('/img/' . $picture_name, ('s3'));
             Shop::where('id', $request->id)->update(['name' => $name, 'area_id' => $area_id, 'genre_id' => $genre_id, 'picture_name'=>$picture_name,'summary' => $summary,]);
         }else{
             Shop::where('id', $request->id)->update(['name' => $name, 'area_id' => $area_id, 'genre_id' => $genre_id, 'summary' => $summary,]);
@@ -93,9 +95,10 @@ class AdminController extends Controller
         $genre_id=$request->genre;
         $summary=$request->summary;
         $picture_name="";
-        if ($request->file) {
-            //$reslut=Storage::disk('s3')->put('/img/',$request->file('picture'));
+        if ($request->file('picture')) {
+            $file=$request->file('picture');
             $picture_name = $request->file('picture')->getClientOriginalName();
+            $file->storeAs('/img/'.$picture_name,('s3'));
             Shop::create(['name' => $name, 'area_id' => $area_id, 'genre_id' => $genre_id, 'picture_name' => $picture_name, 'summary' => $summary,]);
         } else {
             Shop::create(['name' => $name, 'area_id' => $area_id, 'genre_id' => $genre_id, 'summary' => $summary,]);

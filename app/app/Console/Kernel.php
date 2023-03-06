@@ -15,13 +15,12 @@ class Kernel extends ConsoleKernel
      */
 
     protected $commands = [
-        Commands\Test::class,
 
     ];
     
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('Test:info')->everyMinute();
+
     }
 
     /**
